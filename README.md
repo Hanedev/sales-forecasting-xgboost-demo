@@ -29,6 +29,8 @@ The application lets a user:
 - generate six direct forecasts from **M+1 to M+6**;
 - compare the M+1 XGBoost prediction with a simple weighted statistical baseline;
 - visualize historical sales and future forecasts in a Streamlit dashboard;
+- evaluate the models with a temporal holdout using MAE, RMSE, sMAPE and wMAPE;
+- compare XGBoost with the weighted baseline on M+1;
 - demonstrate simple role-based access with `demo` and optional `admin` roles.
 
 ## Architecture
@@ -56,6 +58,7 @@ Streamlit application
       +--> Historical sales
       +--> Forecast table
       +--> XGBoost vs baseline
+      +--> Temporal holdout evaluation
       +--> Admin-only technical info
 ```
 
@@ -85,6 +88,7 @@ sales-forecasting-xgboost-demo/
 │   ├── __init__.py
 │   ├── auth.py
 │   ├── data_processing.py
+│   ├── evaluation.py
 │   ├── features.py
 │   └── forecasting.py
 ├── .streamlit/
@@ -149,6 +153,23 @@ For M+1, the application also computes a simple weighted baseline:
 30% × average of last 3 months
 20% × average of last 12 months
 ```
+
+## Model evaluation
+
+The application includes a **temporal holdout backtest** on the synthetic dataset.
+
+The final six target months are reserved for evaluation. For each forecast horizon, training rows are restricted to observations whose target date occurs before the holdout period. This keeps future target values out of model training.
+
+The evaluation reports:
+
+- **MAE** — mean absolute error;
+- **RMSE** — root mean squared error;
+- **sMAPE** — symmetric mean absolute percentage error;
+- **wMAPE** — weighted absolute percentage error.
+
+For **M+1**, the application also compares XGBoost with the transparent weighted baseline.
+
+The evaluation metrics shown in the application are **portfolio-demo results on synthetic data only**. They are not production results and do not represent employer performance.
 
 ## Authentication
 
@@ -228,6 +249,7 @@ streamlit run app.py
 - secrets handling;
 - simple role-based access;
 - comparison of ML predictions with a transparent baseline;
+- temporal holdout backtesting with MAE, RMSE, sMAPE and wMAPE;
 - separation of authentication, data processing, features and forecasting logic.
 
 ## Author
