@@ -19,6 +19,16 @@ username: demo
 password: demo123
 ```
 
+## Application preview
+
+### Forecast dashboard
+
+![Sales forecasting dashboard](screenshots/forecast-overview.jpg)
+
+### Model evaluation
+
+![Temporal holdout evaluation](screenshots/model-evaluation.jpg)
+
 ## What the project does
 
 The application lets a user:
