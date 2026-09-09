@@ -8,6 +8,17 @@ A portfolio project demonstrating an end-to-end sales forecasting workflow with 
 > It contains **no employer source code, production data, model artifacts, confidential business rules, coefficients or proprietary information**.
 > All data included in this repository is synthetic and the public implementation was written specifically for this portfolio.
 
+## Live demo
+
+**Streamlit:** https://sale-forcasting.streamlit.app/
+
+Demo access:
+
+```text
+username: demo
+password: demo123
+```
+
 ## What the project does
 
 The application lets a user:
